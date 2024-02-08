@@ -1,0 +1,43 @@
+
+<div style="display: flex; flex-direction: row; padding: 1rem; margin-top: 1rem">
+  <div style="flex-direction: column;">
+    <button mat-stroked-button (click)="tournamentsInput.click()">
+      Select Tournament files
+      <mat-icon>upload</mat-icon>
+    </button>
+    <p style="margin-top: 0.25rem" *ngIf="tournaments.length > 0">{{tournaments.length}} files selected</p>
+    <input #tournamentsInput hidden type="file" multiple class="file-upload" (change)="onSelectFiles($event)"/>
+  </div>
+  <div style="flex-direction: column; margin-left: 1rem">
+    <button mat-stroked-button (click)="playersInput.click()">
+      Select Players files
+      <mat-icon>upload</mat-icon>
+    </button>
+    <p style="margin-top: 0.25rem" *ngIf="playersOcc.size > 0">{{playersFileName}}</p>
+    <input #playersInput hidden type="file" class="file-upload" (change)="onSelectPlayers($event)"/>
+  </div>
+  <button [disabled]="!enableSend" style="margin-left: auto; margin-right: 0" mat-raised-button color="primary" (click)="onSend()">Send</button>
+</div>
+
+<div class="charts-block">
+  <canvas
+    #monthCanvas
+    baseChart
+    class="chart"
+    [data]="monthBarChart"
+    [options]="barChartOptions"
+    [type]="charType"
+  >
+  </canvas>
+
+  <canvas
+    #weekCanvas
+    baseChart
+    class="chart"
+    [data]="weekBarChart"
+    [options]="barChartOptions"
+    [type]="charType"
+    style="margin-top: 2rem;"
+  >
+  </canvas>
+</div>
